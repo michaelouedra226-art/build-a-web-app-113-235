@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cahier des charges MAISON SILLAGE — Site vitrine parfumerie sur-mesure">
+  <title>CAHIER DES CHARGES — Site vitrine MAISON SILLAGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --encre: #0E0E10;
+      --ivoire: #F7F3EC;
+      --or: #B08D57;
+      --pierre: #8A8578;
+      --blanc: #FFFFFF;
+      --bordure: #E4DFD4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--encre);
+      background-color: var(--ivoire);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: var(--encre);
+      color: var(--ivoire);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      z-index: 10000;
+      border-radius: 2px;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+      outline: 2px solid var(--or);
+      outline-offset: 2px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--blanc);
+      border-bottom: 1px solid var(--bordure);
+      padding: 16px 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .site-header {
+        padding: 20px 48px;
+      }
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .site-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 1.2;
+      color: var(--encre);
+    }
+
+    .site-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pierre);
+      margin-top: 2px;
+    }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--encre);
+      color: var(--ivoire);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .print-btn:hover {
+      background: #1a1a1c;
+    }
+
+    .print-btn:focus {
+      outline: 2px solid var(--or);
+      outline-offset: 2px;
+    }
+
+    .print-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.25;
+    }
+
+    /* Main Layout */
+    .main-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .main-wrapper {
+        grid-template-columns: 240px 1fr;
+        gap: 64px;
+        padding: 48px 48px 96px;
+      }
+    }
+
+    /* TOC Sidebar */
+    .toc-sidebar {
+      display: none;
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding-right: 24px;
+      border-right: 1px solid var(--bordure);
+    }
+
+    @media (min-width: 1024px) {
+      .toc-sidebar {
+        display: block;
+      }
+    }
+
+    .toc-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--pierre);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list li {
+      margin-bottom: 4px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--encre);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .toc-list a:hover {
+      color: var(--or);
+      background: var(--ivoire);
+    }
+
+    .toc-list a.active {
+      color: var(--or);
+      font-weight: 500;
+    }
+
+    .toc-list a:focus {
+      outline: 2px solid var(--or);
+      outline-offset: 2px;
+    }
+
+    /* Mobile TOC */
+    .mobile-toc {
+      display: block;
+      margin-bottom: 32px;
+      border: 1px solid var(--bordure);
+      border-radius: 2px;
+      background: var(--blanc);
+    }
+
+    @media (min-width: 1024px) {
+      .mobile-toc {
+        display: none;
+      }
+    }
+
+    .mobile-toc summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      list-style: none;
+    }
+
+    .mobile-toc summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mobile-toc summary::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E0E10' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") center/contain no-repeat;
+      transition: transform 0.2s ease;
+    }
+
+    .mobile-toc[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .mobile-toc summary:focus {
+      outline: 2px solid var(--or);
+      outline-offset: -2px;
+    }
+
+    .mobile-toc .toc-list {
+      padding: 0 12px 16px;
+    }
+
+    .mobile-toc .toc-list a {
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    /* Content */
+    .content {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 0 96px;
+    }
+
+    @media (min-width: 1024px) {
+      .content {
+        padding: 64px 0 128px;
+      }
+    }
+
+    /* Typography */
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.15;
+      color: var(--encre);
+      margin-bottom: 8px;
+    }
+
+    .main-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(16px, 2.5vw, 20px);
+      line-height: 1.5;
+      color: var(--pierre);
+      margin-bottom: 64px;
+    }
+
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 4vw, 36px);
+      line-height: 1.2;
+      color: var(--encre);
+      margin-bottom: 16px;
+      position: relative;
+      padding-left: 80px;
+    }
+
+    @media (min-width: 1024px) {
+      h2 {
+        padding-left: 100px;
+      }
+    }
+
+    h2::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 0;
+      top: -8px;
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--or);
+      opacity: 0.9;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--or);
+      margin-top: 12px;
+    }
+
+    h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(20px, 3vw, 24px);
+      line-height: 1.3;
+      color: var(--encre);
+      margin: 32px 0 16px;
+    }
+
+    h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pierre);
+      margin: 24px 0 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--encre);
+      font-weight: 400;
+    }
+
+    .label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pierre);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 80px;
+    }
+
+    section:first-of-type {
+      margin-top: 0;
+    }
+
+    @media (min-width: 1024px) {
+      section {
+        break-before: page;
+      }
+      section:first-of-type {
+        break-before: auto;
+      }
+    }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--bordure);
+      border-radius: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    thead {
+      background: var(--encre);
+      color: var(--ivoire);
+    }
+
+    th {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--bordure);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: var(--ivoire);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Code blocks */
+    pre {
+      background: var(--encre);
+      color: var(--ivoire);
+      padding: 24px;
+      border-radius: 2px;
+      overflow-x: auto;
+      margin: 24px 0;
+      border-left: 3px solid var(--or);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    pre code {
+      color: inherit;
+      background: none;
+      padding: 0;
+    }
+
+    .code-inline {
+      background: var(--ivoire);
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-size: 13px;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 16px 0 16px 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    .check-list {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding-left: 28px;
+      margin-bottom: 12px;
+    }
+
+    .check-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-left: -28px;
+    }
+
+    .check-list .check-yes::before {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B08D57' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .check-list .check-no::before {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A8578' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .check-list .check-bullet::before {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B08D57' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    /* Persona Cards */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 24px 0;
+    }
+
+    @media (min-width: 640px) {
+      .persona-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .persona-card {
+      background: var(--blanc);
+      border: 1px solid var(--bordure);
+      border-radius: 2px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .persona-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--or);
+      opacity: 0.9;
+    }
+
+    .persona-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--encre);
+      margin-bottom: 4px;
+    }
+
+    .persona-role {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--pierre);
+      margin-bottom: 16px;
+    }
+
+    .persona-expectations {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* Tip Box */
+    .tip-box {
+      display: flex;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--ivoire);
+      border-left: 3px solid var(--or);
+      margin: 24px 0;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .tip-box svg {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      stroke: var(--or);
+      stroke-width: 1.25;
+    }
+
+    .tip-content {
+      flex: 1;
+    }
+
+    .tip-content strong {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pierre);
+      margin-bottom: 4px;
+    }
+
+    /* Signature Table */
+    .sig-table {
+      width: 100%;
+      margin-top: 48px;
+    }
+
+    .sig-table th {
+      background: var(--encre);
+      color: var(--ivoire);
+    }
+
+    .sig-table td {
+      height: 60px;
+      vertical-align: bottom;
+      padding-bottom: 20px;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid var(--pierre);
+      width: 100%;
+      min-width: 200px;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--bordure);
+      padding: 32px 24px;
+      background: var(--blanc);
+      margin-top: 64px;
+    }
+
+    @media (min-width: 1024px) {
+      .site-footer {
+        padding: 48px 48px;
+      }
+    }
+
+    .footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: var(--pierre);
+      line-height: 1.6;
+    }
+
+    .footer-date {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--encre);
+    }
+
+    /* Print Styles */
+    @media print {
+      .skip-link,
+      .site-header,
+      .toc-sidebar,
+      .mobile-toc,
+      .print-btn {
+        display: none !important;
+      }
+
+      .main-wrapper {
+        display: block;
+        padding: 0;
+        max-width: none;
+      }
+
+      .content {
+        max-width: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        font-size: 11pt;
+        line-height: 1.6;
+        background: var(--blanc);
+        color: var(--encre);
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      h1 {
+        font-size: 24pt;
+        margin-bottom: 4pt;
+      }
+
+      .main-subtitle {
+        font-size: 12pt;
+        margin-bottom: 32pt;
+      }
+
+      h2 {
+        font-size: 16pt;
+        margin-top: 0;
+        padding-left: 0;
+      }
+
+      h2::before {
+        font-size: 28pt;
+        top: -4pt;
+      }
+
+      h2::after {
+        width: 40px;
+        margin-top: 8pt;
+      }
+
+      h3 {
+        font-size: 13pt;
+        margin: 20pt 0 10pt;
+      }
+
+      p {
+        font-size: 11pt;
+        margin-bottom: 10pt;
+      }
+
+      .table-wrapper {
+        overflow: visible;
+        border: none;
+      }
+
+      table {
+        min-width: 100%;
+        page-break-inside: auto;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tbody {
+        display: table-row-group;
+      }
+
+      tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+
+      pre {
+        page-break-inside: avoid;
+        font-size: 9pt;
+        padding: 16pt;
+      }
+
+      .persona-grid {
+        display: block;
+      }
+
+      .persona-card {
+        page-break-inside: avoid;
+        margin-bottom: 20pt;
+      }
+
+      section {
+        break-before: page;
+      }
+
+      section:first-of-type {
+        break-before: auto;
+      }
+
+      .site-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid var(--bordure);
+        padding: 16pt 24pt;
+        background: var(--blanc);
+      }
+
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        color: var(--pierre);
+      }
+
+      .check-list li::before {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .tip-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    /* Focus visible */
+    :focus-visible {
+      outline: 2px solid var(--or);
+      outline-offset: 2px;
+    }
+
+    /* Reduced opacity for inactive sections in TOC */
+    .toc-list a:not(.active) {
+      opacity: 0.7;
+    }
+
+    /* Smooth scroll padding for sticky header */
+    section {
+      scroll-margin-top: 100px;
+    }
+
+    @media (min-width: 1024px) {
+      section {
+        scroll-margin-top: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div>
+        <div class="site-title">MAISON SILLAGE</div>
+        <div class="site-subtitle">Cahier des charges v1.0</div>
+      </div>
+      <button class="print-btn" onclick="window.print()" aria-label="Imprimer ou enregistrer en PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Imprimer / PDF</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+    <aside class="toc-sidebar" aria-label="Sommaire">
+      <div class="toc-title">SOMMAIRE</div>
+      <nav>
+        <ul class="toc-list" id="toc-list">
+          <li><a href="#s01" data-section="01">01. Contexte & Présentation</a></li>
+          <li><a href="#s02" data-section="02">02. Objectifs</a></li>
+          <li><a href="#s03" data-section="03">03. Périmètre</a></li>
+          <li><a href="#s04" data-section="04">04. Cibles & Personas</a></li>
+          <li><a href="#s05" data-section="05">05. Arborescence & Navigation</a></li>
+          <li><a href="#s06" data-section="06">06. Spécifications Fonctionnelles</a></li>
+          <li><a href="#s07" data-section="07">07. Spécifications Graphiques</a></li>
+          <li><a href="#s08" data-section="08">08. Bibliothèque d'icônes SVG</a></li>
+          <li><a href="#s09" data-section="09">09. Spécifications Techniques</a></li>
+          <li><a href="#s10" data-section="10">10. Contenus & Données</a></li>
+          <li><a href="#s11" data-section="11">11. SEO</a></li>
+          <li><a href="#s12" data-section="12">12. Accessibilité (RGAA / WCAG 2.1 AA)</a></li>
+          <li><a href="#s13" data-section="13">13. Performance</a></li>
+          <li><a href="#s14" data-section="14">14. Sécurité & RGPD</a></li>
+          <li><a href="#s15" data-section="15">15. Compatibilité & Responsive</a></li>
+          <li><a href="#s16" data-section="16">16. Livrables</a></li>
+          <li><a href="#s17" data-section="17">17. Planning Prévisionnel</a></li>
+          <li><a href="#s18" data-section="18">18. Budget Estimatif</a></li>
+          <li><a href="#s19" data-section="19">19. Critères de Recette</a></li>
+          <li><a href="#s20" data-section="20">20. Maintenance & Évolutions (V2)</a></li>
+          <li><a href="#validation" data-section="val">Validation</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content" role="main">
+      <!-- Mobile TOC -->
+      <details class="mobile-toc" aria-label="Sommaire mobile">
+        <summary>Sommaire</summary>
+        <nav>
+          <ul class="toc-list">
+            <li><a href="#s01" data-section="01">01. Contexte & Présentation</a></li>
+            <li><a href="#s02" data-section="02">02. Objectifs</a></li>
+            <li><a href="#s03" data-section="03">03. Périmètre</a></li>
+            <li><a href="#s04" data-section="04">04. Cibles & Personas</a></li>
+            <li><a href="#s05" data-section="05">05. Arborescence & Navigation</a></li>
+            <li><a href="#s06" data-section="06">06. Spécifications Fonctionnelles</a></li>
+            <li><a href="#s07" data-section="07">07. Spécifications Graphiques</a></li>
+            <li><a href="#s08" data-section="08">08. Bibliothèque d'icônes SVG</a></li>
+            <li><a href="#s09" data-section="09">09. Spécifications Techniques</a></li>
+            <li><a href="#s10" data-section="10">10. Contenus & Données</a></li>
+            <li><a href="#s11" data-section="11">11. SEO</a></li>
+            <li><a href="#s12" data-section="12">12. Accessibilité</a></li>
+            <li><a href="#s13" data-section="13">13. Performance</a></li>
+            <li><a href="#s14" data-section="14">14. Sécurité & RGPD</a></li>
+            <li><a href="#s15" data-section="15">15. Compatibilité & Responsive</a></li>
+            <li><a href="#s16" data-section="16">16. Livrables</a></li>
+            <li><a href="#s17" data-section="17">17. Planning Prévisionnel</a></li>
+            <li><a href="#s18" data-section="18">18. Budget Estimatif</a></li>
+            <li><a href="#s19" data-section="19">19. Critères de Recette</a></li>
+            <li><a href="#s20" data-section="20">20. Maintenance & Évolutions</a></li>
+            <li><a href="#validation" data-section="val">Validation</a></li>
+          </ul>
+        </nav>
+      </details>
+
+      <h1>CAHIER DES CHARGES — Site vitrine MAISON SILLAGE</h1>
+      <p class="main-subtitle">Parfumerie sur-mesure · Version 1.0</p>
+
+      <!-- 01. CONTEXTE & PRÉSENTATION -->
+      <section id="s01" aria-labelledby="s01-title">
+        <h2 id="s01-title" data-num="01">CONTEXTE & PRÉSENTATION</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Élément</th>
+                <th scope="col">Détail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Client</td>
+                <td>MAISON SILLAGE</td>
+              </tr>
+              <tr>
+                <td>Activité</td>
+                <td>Parfumerie de niche sur-mesure — création de fragrances personnalisées, collections signatures, ateliers olfactifs</td>
+              </tr>
+              <tr>
+                <td>Positionnement</td>
+                <td>Haut de gamme / luxe accessible — savoir-faire artisanal, matières premières nobles, expérience sensorielle unique</td>
+              </tr>
+              <tr>
+                <td>Projet</td>
+                <td>Refonte complète du site vitrine existant (WordPress) vers une stack moderne, performante et évolutive</td>
+              </tr>
+              <tr>
+                <td>Objectif business</td>
+                <td>Générer des rendez-vous découverte (sur-mesure), vendre les collections signatures en ligne (redirection boutique), asseoir l'autorité de marque</td>
+              </tr>
+              <tr>
+                <td>Langue</td>
+                <td>Français (v1) — architecture prête pour EN / ES ultérieurs</td>
+              </tr>
+              <tr>
+                <td>Devise</td>
+                <td>EUR</td>
+              </tr>
+              <tr>
+                <td>Zone</td>
+                <td>France métropolitaine (livraison), international (boutique physique Paris, ateliers sur réservation)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Contexte concurrentiel</h3>
+        <p>Le marché de la parfumerie de niche est en forte croissance (+12%/an). Les acteurs installés (Diptyque, Le Labo, Byredo) dominent la notoriété mais offrent peu de personnalisation réelle. Les nouveaux entrants "sur-mesure" (Sillages Paris, Olfactive Studio) misent sur le digital-first mais manquent de légitimité artisanale. MAISON SILLAGE occupe une position unique : atelier physique parisien + nez titulaire + matières premières sourcées en direct. Le site doit traduire cette singularité sans tomber dans le vocabulaire marketing générique ("artisanal", "unique", "d'exception").</p>
+      </section>
+
+      <!-- 02. OBJECTIFS -->
+      <section id="s02" aria-labelledby="s02-title">
+        <h2 id="s02-title" data-num="02">OBJECTIFS</h2>
+
+        <h3>2.1 Objectifs business — KPI cibles à 12 mois</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">KPI</th>
+                <th scope="col">Cible</th>
+                <th scope="col">Mesure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rendez-vous découverte / mois</td>
+                <td>40</td>
+                <td>Formulaire + Calendly (source: GA4 event <code class="code-inline">book_appointment</code>)</td>
+              </tr>
+              <tr>
+                <td>Taux de conversion global (visiteur → RDV)</td>
+                <td>3.5%</td>
+                <td>GA4 + CRM</td>
+              </tr>
+              <tr>
+                <td>Temps moyen sur site</td>
+                <td>2 min 30 s</td>
+                <td>GA4 engagement_time_msec</td>
+              </tr>
+              <tr>
+                <td>Taux de rebond</td>
+                <td>< 45%</td>
+                <td>GA4 bounce_rate</td>
+              </tr>
+              <tr>
+                <td>Trafic organique mensuel</td>
+                <td>1 500</td>
+                <td>Search Console clicks</td>
+              </tr>
+              <tr>
+                <td>Pages vues / session</td>
+                <td>3.2</td>
+                <td>GA4</td>
+              </tr>
+              <tr>
+                <td>Part du trafic mobile</td>
+                <td>> 60%</td>
+                <td>GA4 device_category</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2.2 Objectifs de perception</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Installer la crédibilité artisanale dès la première vue (hero, matières, gestes du nez)</li>
+          <li class="check-bullet">Différencier radicalement de l'e-commerce parfum standard : pas de "panier", pas de "promo", expérience éditoriale</li>
+          <li class="check-bullet">Donner envie de pousser la porte de l'atelier (physique ou virtuel)</li>
+        </ul>
+
+        <h3>2.3 Objectifs techniques</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Score Lighthouse &ge; 95 sur les 4 piliers (Performance, Accessibilité, Best Practices, SEO)</li>
+          <li class="check-bullet">Core Web Vitals dans le vert (LCP < 2.5s, INP < 200ms, CLS < 0.1)</li>
+          <li class="check-bullet">Zéro dépendance lourde côté client (pas de bundle JS > 150ko gzippé hors vendor)</li>
+          <li class="check-bullet">Déploiement continu sur Vercel, preview automatique sur chaque PR</li>
+        </ul>
+      </section>
+
+      <!-- 03. PÉRIMÈTRE -->
+      <section id="s03" aria-labelledby="s03-title">
+        <h2 id="s03-title" data-num="03">PÉRIMÈTRE</h2>
+
+        <h3>Dans le périmètre (MVP v1.0)</h3>
+        <ul class="check-list">
+          <li class="check-yes">Accueil éditoriale + hero immersif</li>
+          <li class="check-yes">Page /maison (histoire, nez, atelier, valeurs)</li>
+          <li class="check-yes">Page /collection (grille parfums + fiches détaillées)</li>
+          <li class="check-yes">Page /sur-mesure (processus 4 étapes + formulaire RDV)</li>
+          <li class="check-yes">Page /journal (articles, carnets de création, actualités)</li>
+          <li class="check-yes">Page /contact (infos, formulaire, plan d'accès)</li>
+          <li class="check-yes">CMS Sanity (contenus, médias, SEO, JSON-LD)</li>
+        </ul>
+
+        <h3>Hors périmètre (explicite)</h3>
+        <ul class="check-list">
+          <li class="check-no">E-commerce complet (panier, paiement, comptes clients, expédition)</li>
+          <li class="check-no">Espace client / tableau de bord</li>
+          <li class="check-no">Configurateur de parfum interactif en temps réel (V2)</li>
+          <li class="check-no">Programme fidélité / abonnement</li>
+          <li class="check-no">Marketplace revendeurs</li>
+          <li class="check-no">Application mobile native</li>
+          <li class="check-no">Multilingue actif (architecture prête seulement)</li>
+        </ul>
+
+        <div class="tip-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <div class="tip-content">
+            <strong>Note</strong>
+            <p>La redirection vers la boutique en ligne (Shopify existant) se fait via boutons "Voir sur la boutique" sur les fiches collection. Aucun traitement de commande sur le site vitrine.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. CIBLES & PERSONAS -->
+      <section id="s04" aria-labelledby="s04-title">
+        <h2 id="s04-title" data-num="04">CIBLES & PERSONAS</h2>
+
+        <div class="persona-grid">
+          <article class="persona-card" data-num="01">
+            <h3 class="persona-name">Camille, 38 ans</h3>
+            <p class="persona-role">Directrice marketing · Paris 11e</p>
+            <p class="persona-expectations"><strong>Attentes :</strong> Recherche une fragrance signature qui incarne son leadership discret. Valorise l'expertise technique (pyramide olfactive, tenue, sillage) plus que le storytelling. Veut un processus efficace : diagnostic en ligne → rdv atelier → livraison. Budget : 350–600€.</p>
+          </article>
+          <article class="persona-card" data-num="02">
+            <h3 class="persona-name">Thomas, 47 ans</h3>
+            <p class="persona-role">Architecte d'intérieur · Saint-Germain</p>
+            <p class="persona-expectations"><strong>Attentes :</strong> Collectionneur éclairé (50+ flacons). Cherche la rareté : matières premières introuvables ailleurs, éditions limitées, dialogue de pair à pair avec le nez. Le site doit respirer la compétence, pas le luxe tape-à-l'œil. Budget : 800–2000€.</p>
+          </article>
+          <article class="persona-card" data-num="03">
+            <h3 class="persona-name">Inès, 31 ans</h3>
+            <p class="persona-role">Créatrice de contenu lifestyle · Lyon</p>
+            <p class="persona-expectations"><strong>Attentes :</strong> Découvre MAISON SILLAGE via Instagram / presse. Veut comprendre la démarche, voir l'atelier, sentir l'authenticité. Partagera l'expérience si elle est "instagrammable" sans être superficielle. Budget : 200–400€ (entrée de gamme / atelier découverte).</p>
+          </article>
+        </div>
+
+        <p>Ces trois profils couvrent 85% du CA prévisionnel. Le site doit adresser Camille (efficacité, clarté), Thomas (profondeur, matière, expertise) et Inès (visuel, narration, partage) sans créer de parcours séparés — une seule architecture, des points d'entrée multiples.</p>
+      </section>
+
+      <!-- 05. ARBORESCENCE & NAVIGATION -->
+      <section id="s05" aria-labelledby="s05-title">
+        <h2 id="s05-title" data-num="05">ARBORESCENCE & NAVIGATION</h2>
+
+        <h3>5.1 Structure des URL</h3>
+        <pre><code>/
+├── /maison
+│   ├── /maison/histoire
+│   ├── /maison/le-nez
+│   ├── /maison/atelier
+│   └── /maison/valeurs
+├── /collection
+│   ├── /collection/[slug-parfum]
+│   └── /collection/decouverte
+├── /sur-mesure
+│   ├── /sur-mesure/processus
+│   ├── /sur-mesure/faq
+│   └── /sur-mesure/rendez-vous
+├── /journal
+│   ├── /journal/[slug-article]
+│   └── /journal/categorie/[slug]
+└── /contact</code></pre>
+
+        <h3>5.2 Navigation principale</h3>
+        <p>Desktop : barre horizontale sticky (haut), 5 items + CTA "Rendez-vous" (style bouton primaire). Mobile : drawer latéral (hamburger), même items, CTA en bas du drawer.</p>
+
+        <h3>5.3 Footer (4 colonnes)</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Colonne</th>
+                <th scope="col">Contenu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Maison</td>
+                <td>Histoire, Le Nez, Atelier, Valeurs, Presse</td>
+              </tr>
+              <tr>
+                <td>Collection</td>
+                <td>Signatures, Découverte, Sur-mesure, Ateliers</td>
+              </tr>
+              <tr>
+                <td>Journal</td>
+                <td>Carnets, Actualités, Événements, Newsletter</td>
+              </tr>
+              <tr>
+                <td>Contact</td>
+                <td>Adresse, Horaires, Téléphone, Email, Plan d'accès, Mentions légales, CGV, Données personnelles</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5.4 Fil d'Ariane</h3>
+        <p>Présent sur toutes les pages profondeur &ge; 2. Format : <code class="code-inline">Accueil > Collection > [Nom du parfum]</code>. Balisage JSON-LD <code class="code-inline">BreadcrumbList</code>. Masqué sur mobile si largeur insuffisante.</p>
+      </section>
+
+      <!-- 06. SPÉCIFICATIONS FONCTIONNELLES -->
+      <section id="s06" aria-labelledby="s06-title">
+        <h2 id="s06-title" data-num="06">SPÉCIFICATIONS FONCTIONNELLES</h2>
+
+        <h3>6.1 Accueil — Sections</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Section</th>
+                <th scope="col">Contenu / Comportement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Hero</td>
+                <td>Vidéo looping muette (WebM/MP4, < 8Mo) ou image unique. Titre H1 + sous-titre. CTA principal "Prendre rendez-vous" + secondaire "Découvrir la collection"</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Signature olfactive</td>
+                <td>3 accords clés (tête/cœur/fond) animés au scroll — matières premières phares</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Le Nez — Portrait</td>
+                <td>Photo + citation + lien vers /maison/le-nez</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Atelier immersif</td>
+                <td>Galerie 3 images (gestes, matières, flacons) + lien /maison/atelier</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Collections phares</td>
+                <td>3 parfums signatures (image, nom, note de tête, prix départ, lien fiche)</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Sur-mesure — Processus</td>
+                <td>4 étapes visuelles (Diagnostic, Création, Essais, Livraison) + CTA /sur-mesure</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Journal — Derniers carnets</td>
+                <td>3 derniers articles (image, catégorie, titre, date, extrait, lien)</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Presse / Ambassadeurs</td>
+                <td>Logos presse (Le Monde, AD, Vogue...) + 2 visages ambassadeurs</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Newsletter</td>
+                <td>Champ email + RGPD consent + "Recevoir les carnets du nez" — Sanity webhook → Resend</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>6.2 /maison — Sous-pages</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Page</th>
+                <th scope="col">Contenu clé</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>/maison/histoire</td>
+                <td>Chronologie interactive (années + jalons), texte long, images d'archives</td>
+              </tr>
+              <tr>
+                <td>/maison/le-nez</td>
+                <td>Biographie, philosophie, formation, matières favorites, vidéo courte (portrait)</td>
+              </tr>
+              <tr>
+                <td>/maison/atelier</td>
+                <td>Visite virtuelle (photos 360° ou vidéo), horaires, accès, rendez-vous visite</td>
+              </tr>
+              <tr>
+                <td>/maison/valeurs</td>
+                <td>4 piliers : Traçabilité, Artisanat, Durabilité, Transmission — chaque pilier = icône + texte</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>6.3 /collection + fiche parfum</h3>
+        <p>Page grille : filtre par famille olfactive (6 familles), tri (nouveauté, best-seller, prix). Carte : image, nom, famille, note de tête, prix "À partir de", tag "Sur-mesure possible".</p>
+        <p>Fiche (/collection/[slug]) : galerie 3 images (flacon, matière, ambiance), pyramide olfactive interactive (hover/tap révèle description matière), texte de création (histoire du parfum), formats disponibles (30ml, 50ml, 100ml, extrait), bouton "Voir sur la boutique" (lien externe Shopify), bouton "Personnaliser" → /sur-mesure, produits suggérés (3 max).</p>
+
+        <h3>6.4 /sur-mesure — Processus 4 étapes</h3>
+        <ol>
+          <li><strong>Diagnostic olfactif</strong> — Questionnaire en ligne (12 questions : goûts, souvenirs, occasions, budget, allergies). Résultats : 3 profils suggérés + rdv conseillé.</li>
+          <li><strong>Création en atelier</strong> — RDV 2h avec le nez. Sélection matières (organoleptique), premières formules, ajustements. Traçabilité lot matière.</li>
+          <li><strong>Essais & Ajustements</strong> — 3 essais maximum sur 4 semaines. Envoi échantillons (pipettes 2ml) + fiche de retour. Ajustement final validé par client.</li>
+          <li><strong>Livraison & Suivi</strong> — Flacon gravé (nom + date), coffret, certificat d'authenticité (numéro de lot, formule archivée). Relance 6 mois (évolution parfum).</li>
+        </ol>
+
+        <h3>6.5 /journal</h3>
+        <p>Liste paginée (12/articles), filtre par catégorie (Carnets de création, Matières, Événements, Coulisses). Carte : image, catégorie, titre, date, temps de lecture, extrait. Article : hero image, méta (auteur, date, catégorie, lecture), corps riche (images, citations, vidéos embed), articles liés (3), partage social, newsletter CTA.</p>
+
+        <h3>6.6 /contact</h3>
+        <p>Informations : adresse (atelier + boutique), horaires, téléphone, email, plan interactif (Mapbox/Leaflet, pas Google Maps), formulaire (voir 6.7), FAQ lien, mentions légales liens.</p>
+
+        <h3>6.7 Formulaire de contact / RDV</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Champ</th>
+                <th scope="col">Type</th>
+                <th scope="col">Requis</th>
+                <th scope="col">Validation</th>
+                <th scope="col">Comportement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Civilité</td>
+                <td>Select (Mme, M., Mx, Préfère ne pas dire)</td>
+                <td>Non</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Prénom</td>
+                <td>Text</td>
+                <td>Oui</td>
+                <td>2–50 car, lettres only</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Nom</td>
+                <td>Text</td>
+                <td>Oui</td>
+                <td>2–50 car, lettres only</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>Email</td>
+                <td>Oui</td>
+                <td>RFC 5322</td>
+                <td>Vérification MX côté serveur</td>
+              </tr>
+              <tr>
+                <td>Téléphone</td>
+                <td>Tel</td>
+                <td>Non</td>
+                <td>Format FR/EU</td>
+                <td>Masque auto +33</td>
+              </tr>
+              <tr>
+                <td>Objet</td>
+                <td>Select (Rendez-vous sur-mesure, Visite atelier, Information collection, Presse/Partenariat, Autre)</td>
+                <td>Oui</td>
+                <td>—</td>
+                <td>Si "Rendez-vous" → affiche calendrier Calendly embed</td>
+              </tr>
+              <tr>
+                <td>Message</td>
+                <td>Textarea</td>
+                <td>Oui</td>
+                <td>20–2000 car</td>
+                <td>Compteur caractères</td>
+              </tr>
+              <tr>
+                <td>RGPD</td>
+                <td>Checkbox</td>
+                <td>Oui</td>
+                <td>Checked</td>
+                <td>Lien vers politique confidentialité</td>
+              </tr>
+              <tr>
+                <td>Newsletter</td>
+                <td>Checkbox</td>
+                <td>Non</td>
+                <td>—</td>
+                <td>Opt-in explicite, double opt-in email</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Soumission : React Hook Form + Zod validation → API route Next.js → Resend (email équipe) + Sanity (stockage lead) + webhook Calendly si RDV. Réponse toast succès/erreur. Honeypot anti-bot.</p>
+      </section>
+
+      <!-- 07. SPÉCIFICATIONS GRAPHIQUES -->
+      <section id="s07" aria-labelledby="s07-title">
+        <h2 id="s07-title" data-num="07">SPÉCIFICATIONS GRAPHIQUES</h2>
+
+        <h3>7.1 Palette — Couleurs & contrastes</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Variable</th>
+                <th scope="col">Hex</th>
+                <th scope="col">Usage</th>
+                <th scope="col">Contraste (AA/AAA)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>--encre</td>
+                <td>#0E0E10</td>
+                <td>Texte principal, fonds sombres</td>
+                <td>AAA sur ivoire (15.3:1)</td>
+              </tr>
+              <tr>
+                <td>--ivoire</td>
+                <td>#F7F3EC</td>
+                <td>Fond principal, lignes alternées</td>
+                <td>AAA sur encre</td>
+              </tr>
+              <tr>
+                <td>--or</td>
+                <td>#B08D57</td>
+                <td>Accents, numéros, CTA primaire, filets</td>
+                <td>AA sur ivoire (3.2:1) — <strong>réservé aux éléments graphiques, pas texte courant</strong></td>
+              </tr>
+              <tr>
+                <td>--pierre</td>
+                <td>#8A8578</td>
+                <td>Texte secondaire, labels, bordures subtiles</td>
+                <td>AA sur ivoire (4.8:1), AAA sur encre</td>
+              </tr>
+              <tr>
+                <td>--blanc</td>
+                <td>#FFFFFF</td>
+                <td>Cartes, modales, fonds purs</td>
+                <td>AAA sur encre</td>
+              </tr>
+              <tr>
+                <td>--bordure</td>
+                <td>#E4DFD4</td>
+                <td>Filets, séparateurs, tableaux</td>
+                <td>Décoratif uniquement</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>7.2 Typographie</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Rôle</th>
+                <th scope="col">Police</th>
+                <th scope="col">Poids</th>
+                <th scope="col">Taille Desktop</th>
+                <th scope="col">Taille Mobile</th>
+                <th scope="col">Line-height</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>H1</td>
+                <td>Fraunces</td>
+                <td>300</td>
+                <td>56–72px (clamp)</td>
+                <td>36–44px (clamp)</td>
+                <td>1.15</td>
+              </tr>
+              <tr>
+                <td>H2</td>
+                <td>Fraunces</td>
+                <td>400</td>
+                <td>36–44px (clamp)</td>
+                <td>28px</td>
+                <td>1.2</td>
+              </tr>
+              <tr>
+                <td>H3</td>
+                <td>Fraunces</td>
+                <td>400</td>
+                <td>22–26px (clamp)</td>
+                <td>20px</td>
+                <td>1.3</td>
+              </tr>
+              <tr>
+                <td>Corps</td>
+                <td>Inter</td>
+                <td>400</td>
+                <td>16–17px</td>
+                <td>16px</td>
+                <td>1.75</td>
+              </tr>
+              <tr>
+                <td>Corps gras</td>
+                <td>Inter</td>
+                <td>500</td>
+                <td>16px</td>
+                <td>16px</td>
+                <td>1.7</td>
+              </tr>
+              <tr>
+                <td>Labels / Meta</td>
+                <td>Inter</td>
+                <td>500</td>
+                <td>12px</td>
+                <td>12px</td>
+                <td>1.5</td>
+              </tr>
+              <tr>
+                <td>Code</td>
+                <td>ui-monospace</td>
+                <td>400</td>
+                <td>13px</td>
+                <td>13px</td>
+                <td>1.6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>7.3 Grille & Espacements</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Grille 12 colonnes, gouttière 24px (desktop), 16px (mobile)</li>
+          <li class="check-bullet">Conteneur max-width 1200px (contenu), 1440px (full-bleed sections)</li>
+          <li class="check-bullet">Marges latérales min 6vw (desktop), 24px (mobile)</li>
+          <li class="check-bullet">Échelle d'espacement : 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 / 128px</li>
+          <li class="check-bullet">Respirations verticales entre sections : 80px (desktop) / 48px (mobile)</li>
+          <li class="check-bullet">Radius : 0 (défaut) ou 2px (boutons, cartes, inputs) — jamais plus</li>
+        </ul>
+
+        <h3>7.4 Composants UI</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Composant</th>
+                <th scope="col">Spécification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bouton primaire</td>
+                <td>Fond encre, texte ivoire, padding 14px 28px, radius 2px, hover: fond #1a1a1c, focus: outline or 2px offset 2px</td>
+              </tr>
+              <tr>
+                <td>Bouton secondaire</td>
+                <td>Bordure 1px encre, texte encre, fond transparent, hover: fond ivoire</td>
+              </tr>
+              <tr>
+                <td>Bouton tertiaire (texte)</td>
+                <td>Texte encre, soulignement au hover (or), pas de padding vertical</td>
+              </tr>
+              <tr>
+                <td>Input / Textarea</td>
+                <td>Bordure 1px --bordure, fond blanc, padding 12px 16px, radius 2px, focus: bordure or 2px, label au-dessus (12px, majuscules)</td>
+              </tr>
+              <tr>
+                <td>Select</td>
+                <td>Même style input, icône flèche SVG or à droite</td>
+              </tr>
+              <tr>
+                <td>Checkbox / Radio</td>
+                <td>20x20px, bordure 1.5px encre, check SVG or, focus: outline or</td>
+              </tr>
+              <tr>
+                <td>Carte (parfum, article, persona)</td>
+                <td>Fond blanc, bordure 1px --bordure, radius 2px, padding 24–32px, hover: bordure or (transition 0.2s)</td>
+              </tr>
+              <tr>
+                <td>Tag / Badge</td>
+                <td>Fond ivoire, texte encre, padding 4px 12px, radius 2px, police 11px majuscules</td>
+              </tr>
+              <tr>
+                <td>Séparateur</td>
+                <td>1px --bordure (horizontal), 3px or (accents sous titres)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>7.5 Animations</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Durée standard : 200ms (micro-interactions), 400ms (transitions de page/chargement)</li>
+          <li class="check-bullet">Easing : <code class="code-inline">cubic-bezier(0.25, 0.46, 0.45, 0.94)</code> (material standard)</li>
+          <li class="check-bullet">Respect <code class="code-inline">prefers-reduced-motion</code> : désactiver tout mouvement non essentiel</li>
+          <li class="check-bullet">Scroll reveal : <code class="code-inline">IntersectionObserver</code>, seuil 0.1, rootMargin "0px 0px -50px 0px"</li>
+          <li class="check-bullet">Hero vidéo : lecture auto muette, pause hors viewport</li>
+          <li class="check-bullet">Pas de parallaxe complexe, pas de Lottie, pas de GSAP — Framer Motion uniquement pour transitions de layout et AnimatePresence</li>
+        </ul>
+
+        <h3>7.6 Renvoi</h3>
+        <p>Voir section <a href="#s08">08. Bibliothèque d'icônes SVG</a> pour le système d'icônes complet.</p>
+      </section>
+
+      <!-- 08. BIBLIOTHÈQUE D'ICÔNES SVG -->
+      <section id="s08" aria-labelledby="s08-title">
+        <h2 id="s08-title" data-num="08">BIBLIOTHÈQUE D'ICÔNES SVG</h2>
+
+        <h3>8.1 Convention technique</h3>
+        <pre><code>// Composant React unique : Icon({ name, size = 24, strokeWidth = 1.25, className, ...props })
+// Tous les SVG : viewBox="0 0 24 24", fill="none", stroke="currentColor"
+// stroke-linecap="round", stroke-linejoin="round"
+// Pas de width/height en dur → contrôlé par CSS (width: 1em; height: 1em;)
+// Stockage : /components/icons/[name].tsx (export const Flacon = ...)
+// Barrel export : /components/icons/index.ts</code></pre>
+
+        <h3>8.2 Icônes à livrer (16)</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Usage principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>flacon</td>
+                <td>Flacon de parfum stylisé, bouchon visible</td>
+                <td>Hero, cartes collection, favicon</td>
+              </tr>
+              <tr>
+                <td>note-olfactive</td>
+                <td>Trois cercles alignés (tête, cœur, fond) avec traits de liaison</td>
+                <td>Pyramide olfactive, filtres collection</td>
+              </tr>
+              <tr>
+                <td>goutte</td>
+                <td>Goutte unique, pointe en bas</td>
+                <td>Matières premières, dosage, accents</td>
+              </tr>
+              <tr>
+                <td>rendez-vous</td>
+                <td>Calendrier + aiguille / horloge</td>
+                <td>CTA RDV, processus sur-mesure étape 1</td>
+              </tr>
+              <tr>
+                <td>atelier</td>
+                <td>Porte d'atelier + outils (pipette, entonnoir)</td>
+                <td>Navigation maison, footer, page atelier</td>
+              </tr>
+              <tr>
+                <td>nez</td>
+                <td>Profil nez + molécule odorante stylisée</td>
+                <td>Page le-nez, auteur articles</td>
+              </tr>
+              <tr>
+                <td>matiere</td>
+                <td>Feuille / plante + goutte (extraction)</td>
+                <td>Valeurs, journal catégories, fiches parfum</td>
+              </tr>
+              <tr>
+                <td>temps</td>
+                <td>Sablier minimaliste</td>
+                <td>Temps de lecture journal, macération, tenue</td>
+              </tr>
+              <tr>
+                <td>partage</td>
+                <td>Trois points reliés (partage natif)</td>
+                <td>Articles, fiches parfum, newsletter</td>
+              </tr>
+              <tr>
+                <td>fleche-droite</td>
+                <td>Flèche droite fine</td>
+                <td>Liens, boutons tertiaires, pagination</td>
+              </tr>
+              <tr>
+                <td>menu</td>
+                <td>Trois traits horizontaux (hamburger)</td>
+                <td>Navigation mobile</td>
+              </tr>
+              <tr>
+                <td>croix</td>
+                <td>Croix fine (fermeture modale, drawer)</td>
+                <td>Modales, drawer mobile, alertes</td>
+              </tr>
+              <tr>
+                <td>email</td>
+                <td>Enveloppe minimaliste</td>
+                <td>Contact, newsletter, footer</td>
+              </tr>
+              <tr>
+                <td>telephone</td>
+                <td>Combiné téléphone</td>
+                <td>Contact, footer</td>
+              </tr>
+              <tr>
+                <td>localisation</td>
+                <td>Marqueur carte (pin)</td>
+                <td>Contact, footer, plan d'accès</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>8.3 Implémentation</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Chaque icône = composant React TypeScript individuel (<code class="code-inline">IconFlacon.tsx</code>)</li>
+          <li class="check-bullet">Props : <code class="code-inline">size?: number</code> (défaut 24), <code class="code-inline">strokeWidth?: number</code> (défaut 1.25), <code class="code-inline">className?: string</code>, <code class="code-inline">aria-hidden?: boolean</code> (défaut true)</li>
+          <li class="check-bullet">Pas de couleur en dur → <code class="code-inline">stroke="currentColor"</code> hérite du texte parent</li>
+          <li class="check-bullet">Tree-shaking : import nommé <code class="code-inline">import { Flacon } from '@/components/icons'</code></li>
+          <li class="check-bullet">Favicon : généré depuis <code class="code-inline">flacon</code> (32x32, 192x192, maskable 512x512)</li>
+        </ul>
+
+        <h3>8.4 Exemples — SVG inline (échappés pour intégration HTML)</h3>
+
+        <h4>flacon</h4>
+        <pre><code>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.25&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;path d=&quot;M12 2a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2z&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 4v-1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1&quot;&gt;&lt;/path&gt;
+  &lt;circle cx=&quot;12&quot; cy=&quot;14&quot; r=&quot;2&quot;&gt;&lt;/circle&gt;
+&lt;/svg&gt;</code></pre>
+
+        <h4>note-olfactive</h4>
+        <pre><code>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.25&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;circle cx=&quot;7&quot; cy=&quot;18&quot; r=&quot;3&quot;&gt;&lt;/circle&gt;
+  &lt;circle cx=&quot;12&quot; cy=&quot;10&quot; r=&quot;3&quot;&gt;&lt;/circle&gt;
+  &lt;circle cx=&quot;17&quot; cy=&quot;18&quot; r=&quot;3&quot;&gt;&lt;/circle&gt;
+  &lt;path d=&quot;M10 15v-3M14 13v-3&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M7 15V8a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v7&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+
+        <h4>goutte</h4>
+        <pre><code>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.25&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;path d=&quot;M12 2.5a6.5 6.5 0 0 1 6.5 6.5c0 5.5-6.5 12-6.5 12S5.5 14.5 5.5 9A6.5 6.5 0 0 1 12 2.5z&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+
+        <h4>rendez-vous</h4>
+        <pre><code>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.25&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot; ry=&quot;2&quot;&gt;&lt;/rect&gt;
+  &lt;line x1=&quot;16&quot; y1=&quot;2&quot; x2=&quot;16&quot; y2=&quot;6&quot;&gt;&lt;/line&gt;
+  &lt;line x1=&quot;8&quot; y1=&quot;2&quot; x2=&quot;8&quot; y2=&quot;6&quot;&gt;&lt;/line&gt;
+  &lt;line x1=&quot;3&quot; y1=&quot;10&quot; x2=&quot;21&quot; y2=&quot;10&quot;&gt;&lt;/line&gt;
+  &lt;circle cx=&quot;12&quot; cy=&quot;14&quot; r=&quot;2&quot;&gt;&lt;/circle&gt;
+  &lt;path d=&quot;M12 12v-2l2 2&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;</code></pre>      </section>
+
+      <!-- 09. SPÉCIFICATIONS TECHNIQUES -->
+      <section id="s09" aria-labelledby="s09-title">
+        <h2 id="s09-title" data-num="09">SPÉCIFICATIONS TECHNIQUES</h2>
+
+        <h3>9.1 Stack</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Couche</th>
+                <th scope="col">Technologie</th>
+                <th scope="col">Version</th>
+                <th scope="col">Justification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Framework</td>
+                <td>Next.js</td>
+                <td>15 (App Router)</td>
+                <td>RSC, streaming, ISR, performance, écosystème Vercel</td>
+              </tr>
+              <tr>
+                <td>Langage</td>
+                <td>TypeScript</td>
+                <td>5.5+</td>
+                <td>Typage strict, DX, maintenance long terme</td>
+              </tr>
+              <tr>
+                <td>Styling</td>
+                <td>Tailwind CSS</td>
+                <td>3.4+</td>
+                <td>Utility-first, design tokens, bundle minimal, dark mode ready</td>
+              </tr>
+              <tr>
+                <td>Animations</td>
+                <td>Framer Motion</td>
+                <td>11+</td>
+                <td>Layout animations, AnimatePresence, RSC compatible</td>
+              </tr>
+              <tr>
+                <td>CMS</td>
+                <td>Sanity</td>
+                <td>3+ (Studio v3)</td>
+                <td>Contenu structuré, GROQ, real-time, localization ready, webhook</td>
+              </tr>
+              <tr>
+                <td>Formulaires</td>
+                <td>React Hook Form + Zod</td>
+                <td>7.51+ / 3.22+</td>
+                <td>Performant, validation schema-first, TypeScript natif</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>Resend</td>
+                <td>API v2</td>
+                <td>Transactional, React Email templates, délivrabilité, webhooks</td>
+              </tr>
+              <tr>
+                <td>Analytics</td>
+                <td>Plausible</td>
+                <td>Self-hosted / Cloud</td>
+                <td>RGPD natif, pas de cookies, léger (< 1ko), events custom</td>
+              </tr>
+              <tr>
+                <td>Hébergement</td>
+                <td>Vercel</td>
+                <td>Pro</td>
+                <td>Edge network, preview deployments, ISR, analytics, cron</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>9.2 Architecture — Arborescence</h3>
+        <pre><code>src/
+├── app/
+│   ├── (marketing)/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx                    # Accueil
+│   │   ├── maison/
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx                # /maison (hub)
+│   │   │   ├── histoire/page.tsx
+│   │   │   ├── le-nez/page.tsx
+│   │   │   ├── atelier/page.tsx
+│   │   │   └── valeurs/page.tsx
+│   │   ├── collection/
+│   │   │   ├── page.tsx                # Grille + filtres
+│   │   │   └── [slug]/page.tsx         # Fiche parfum
+│   │   ├── sur-mesure/
+│   │   │   ├── page.tsx                # Hub
+│   │   │   ├── processus/page.tsx
+│   │   │   ├── faq/page.tsx
+│   │   │   └── rendez-vous/page.tsx    # Formulaire + Calendly
+│   │   ├── journal/
+│   │   │   ├── page.tsx                # Liste paginée
+│   │   │   ├── [slug]/page.tsx         # Article
+│   │   │   └── categorie/[slug]/page.tsx
+│   │   └── contact/page.tsx
+│   ├── api/
+│   │   ├── contact/route.ts            # POST formulaire → Resend + Sanity
+│   │   ├── newsletter/route.ts         # POST → Resend double opt-in
+│   │   └── webhook/
+│   │       ├── sanity/route.ts         # Revalidation ISR
+│   │       └── calendly/route.ts       # Sync RDV
+│   ├── globals.css
+│   └── layout.tsx                      # Root layout (fonts, providers)
+├── components/
+│   ├── ui/                             # Primitives (Button, Input, Card, etc.)
+│   ├── icons/                          # 16 icônes SVG (barrel export)
+│   ├── layout/                         # Header, Footer, Navigation, Breadcrumb
+│   ├── sections/                       # Sections réutilisables (Hero, Grid, etc.)
+│   └── forms/                          # ContactForm, NewsletterForm
+├── lib/
+│   ├── sanity.ts                       # Client + GROQ queries
+│   ├── sanity/queries.ts               # Requêtes typées
+│   ├── validations.ts                  # Schémas Zod
+│   ├── email/                          # Templates React Email
+│   ├── plausible.ts                    # Event helpers
+│   └── utils.ts                        # cn(), formatters, etc.
+├── types/
+│   ├── sanity.ts                       # Types générés (sanity-typegen)
+│   └── global.d.ts
+├── styles/
+│   └── tailwind.css                    # Design tokens, @layer base/components/utilities
+└── middleware.ts                       # Locale, security headers, bot protection</code></pre>
+
+        <h3>9.3 Rendu</h3>
+        <ul class="check-list">
+          <li class="check-bullet">SSG par défaut pour toutes les pages marketing (build time)</li>
+          <li class="check-bullet">ISR (revalidate: 3600) sur pages dépendant du CMS (collection, journal, maison)</li>
+          <li class="check-bullet">Webhook Sanity → <code class="code-inline">revalidatePath</code> ciblé (tags: <code class="code-inline">collection</code>, <code class="code-inline">journal</code>, <code class="code-inline">maison</code>)</li>
+          <li class="check-bullet">Pas de SSR hors API routes et formulaire RDV (Calendly embed client-side)</li>
+          <li class="check-bullet">Streaming pour hero vidéo (Suspense boundary)</li>
+        </ul>
+
+        <h3>9.4 Images</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Sanity Asset Pipeline (CDN) — transformation à la volée</li>
+          <li class="check-bullet">Formats : WebP/AVIF auto, fallback JPEG/PNG</li>
+          <li class="check-bullet">Responsive : <code class="code-inline">next/image</code> avec <code class="code-inline">sizes</code> adapté par composant</li>
+          <li class="check-bullet">Hero : LQIP (blur-data-url) + priority=true</li>
+          <li class="check-bullet">Lazy loading natif pour tout le reste</li>
+          <li class="check-bullet">Poids max original : 2Mo (sanity validate), largeur max 2400px</li>
+        </ul>
+
+        <h3>9.5 Intégrations</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Intégration</th>
+                <th scope="col">Déclencheur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Calendly</td>
+                <td>Embed inline (widget) + webhook → Sanity (création lead RDV)</td>
+                <tr>
+                  <td>Resend</td>
+                  <td>API routes (contact, newsletter, confirmation RDV)</td>
+                  <td>Soumission formulaire, double opt-in</td>
+                </tr>
+                <tr>
+                  <td>Plausible</td>
+                  <td>Script head + <code class="code-inline">plausible()</code> events custom</td>
+                  <td>CTA clicks, scroll depth, video play, form submit</td>
+                </tr>
+                <tr>
+                  <td>Sanity</td>
+                  <td>GROQ queries (server components) + webhook revalidation</td>
+                  <td>Build, publish, unpublish, scheduled</td>
+                </tr>
+                <tr>
+                  <td>Shopify</td>
+                  <td>Liens sortants uniquement (boutique externe)</td>
+                  <td>Clic "Voir sur la boutique"</td>
+                </tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 10. CONTENUS & DONNÉES -->
+      <section id="s10" aria-labelledby="s10-title">
+        <h2 id="s10-title" data-num="10">CONTENUS & DONNÉES</h2>
+
+        <h3>10.1 Modèles Sanity (schémas TypeScript)</h3>
+
+        <h4>parfum.ts</h4>
+        <pre><code>export interface Parfum {
+  _id: string
+  _type: 'parfum'
+  slug: { current: string }
+  nom: string
+  famille: 'hesperide' | 'floral' | 'boise' | 'oriental' | 'fougere' | 'chypre'
+  notes: {
+    tete: string[]
+    coeur: string[]
+    fond: string[]
+  }
+  description: PortableTextBlock[]
+  histoire: PortableTextBlock[]
+  images: SanityImageAsset[]      // 3 max (flacon, matiere, ambiance)
+  formats: {
+    taille: '30ml' | '50ml' | '100ml' | 'extrait'
+    prix: number
+    stock: boolean
+  }[]
+  surMesurePossible: boolean
+  produitsSuggeres: { _ref: string }[]  // max 3
+  seo: SEOFields
+  ordreAffichage: number
+  publishedAt: string
+}</code></pre>
+
+        <h4>article.ts</h4>
+        <pre><code>export interface Article {
+  _id: string
+  _type: 'article'
+  slug: { current: string }
+  titre: string
+  excerpt: string
+  categorie: 'carnets' | 'matieres' | 'evenements' | 'coulisses'
+  auteur: { _ref: string }  // → auteur document
+  imageUne: SanityImageAsset
+  corps: PortableTextBlock[]  // blocs riches : texte, images, citations, vidéo embed
+  tempsLecture: number        // minutes, calculé auto
+  articlesLies: { _ref: string }[]  // max 3
+  seo: SEOFields
+  publishedAt: string
+}</code></pre>
+
+        <h4>pageMaison.ts</h4>
+        <pre><code>export interface PageMaison {
+  _id: string
+  _type: 'pageMaison'
+  slug: { current: string }  // histoire | le-nez | atelier | valeurs
+  titre: string
+  sousTitre: string
+  heroImage: SanityImageAsset
+  heroVideo?: SanityFileAsset  // WebM/MP4, < 8Mo
+  blocs: BlocMaison[]          // array de blocs flexibles (texte, galerie, citation, vidéo, valeurs)
+  seo: SEOFields
+}</code></pre>
+
+        <h4>auteur.ts</h4>
+        <pre><code>export interface Auteur {
+  _id: string
+  _type: 'auteur'
+  nom: string
+  role: string
+  bio: PortableTextBlock[]
+  photo: SanityImageAsset
+  reseaux: {
+    instagram?: string
+    linkedin?: string
+  }
+}</code></pre>
+
+        <h3>10.2 Contenus à fournir — Volume & Responsable</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Contenu</th>
+                <th scope="col">Volume estimé</th>
+                <th scope="col">Responsable</th>
+                <th scope="col">Format source</th>
+                <th scope="col">Délai</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Textes pages fixes (maison, contact, sur-mesure processus)</td>
+                <td>~12 000 mots</td>
+                <td>Client + Copywriter</td>
+                <td>Google Doc / Word</td>
+                <td>S+1 semaine</td>
+              </tr>
+              <tr>
+                <td>Fiches parfums (8–12 références)</td>
+                <td>8–12 × 300 mots + pyramide</td>
+                <td>Nez + Client</td>
+                <td>Fiche technique PDF</td>
+                <td>S+2 semaines</td>
+              </tr>
+              <tr>
+                <td>Articles journal (lancement)</td>
+                <td>6 articles (2 par catégorie)</td>
+                <td>Client + Rédacteur</td>
+                <td>Google Doc + images</td>
+                <td>S+3 semaines</td>
+              </tr>
+              <tr>
+                <td>Images hero / pages fixes</td>
+                <td>~25 visuels</td>
+                <td>Photographe (fourni par client)</td>
+                <td>RAW / JPEG HD</td>
+                <td>S+2 semaines</td>
+              </tr>
+              <tr>
+                <td>Images fiches parfums (3/parfum)</td>
+                <td>24–36 visuels</td>
+                <td>Photographe</td>
+                <td>RAW / JPEG HD</td>
+                <td>S+3 semaines</td>
+              </tr>
+              <tr>
+                <td>Vidéo hero (boucle 15-30s)</td>
+                <td>1 fichier</td>
+                <td>Vidéaste</td>
+                <td>ProRes / MP4 4K</td>
+                <td>S+3 semaines</td>
+              </tr>
+              <tr>
+                <td>Vidéo portrait Nez (60-90s)</td>
+                <td>1 fichier</td>
+                <td>Vidéaste</td>
+                <td>ProRes / MP4 4K</td>
+                <td>S+3 semaines</td>
+              </tr>
+              <tr>
+                <td>Traductions EN/ES (option V2)</td>
+                <td>—</td>
+                <td>Traducteur spécialisé luxe</td>
+                <td>XLIFF / CSV</td>
+                <td>V2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>10.3 Crédits</h3>
+        <p>Tous les visuels (photos, vidéos) restent la propriété exclusive de MAISON SILLAGE. Le prestataire technique n'acquiert aucun droit sur les assets. Crédits photographe/vidéaste affichés dans les métadonnées Sanity (champ <code class="code-inline">credit</code> sur chaque asset) et en bas de page article/fiche si requis.</p>
+      </section>
+
+      <!-- 11. SEO -->
+      <section id="s11" aria-labelledby="s11-title">
+        <h2 id="s11-title" data-num="11">SEO</h2>
+
+        <h3>11.1 On-page</h3>
+        <ul class="check-list">
+          <li class="check-yes">Balises <code class="code-inline">title</code> uniques < 60 car, H1 unique par page, méta description < 155 car</li>
+          <li class="check-yes">Structure H1 > H2 > H3 sémantique, pas de saut de niveau</li>
+          <li class="check-yes">Attributs <code class="code-inline">alt</code> descriptifs sur toutes les images (contexte parfum : matière, flacon, geste)</li>
+          <li class="check-yes">URLs propres, francophones, tirets : <code class="code-inline">/collection/rose-oud-absolu</code></li>
+          <li class="check-yes">Liens internes contextuels (3–5 par page), ancres descriptives</li>
+          <li class="check-yes">Données structurées JSON-LD sur chaque type de page (voir 11.2)</li>
+          <li class="check-yes">Sitemap.xml + robots.txt générés automatiquement (next-sitemap)</li>
+        </ul>
+
+        <h3>11.2 JSON-LD — Schémas par page</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Page</th>
+                <th scope="col">Schémas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Accueil</td>
+                <td>Organization, WebSite, LocalBusiness (atelier)</td>
+              </tr>
+              <tr>
+                <td>/maison/*</td>
+                <td>AboutPage, Person (le-nez), Place (atelier)</td>
+              </tr>
+              <tr>
+                <td>/collection (grille)</td>
+                <td>CollectionPage, ItemList (Product)</td>
+              </tr>
+              <tr>
+                <td>/collection/[slug]</td>
+                <td>Product (offers: price, availability, brand), BreadcrumbList</td>
+              </tr>
+              <tr>
+                <td>/sur-mesure/*</td>
+                <td>Service, FAQPage (sur faq), BreadcrumbList</td>
+              </tr>
+              <tr>
+                <td>/journal (liste)</td>
+                <td>Blog, ItemList (BlogPosting)</td>
+              </tr>
+              <tr>
+                <td>/journal/[slug]</td>
+                <td>BlogPosting, Person (auteur), BreadcrumbList</td>
+              </tr>
+              <tr>
+                <td>/contact</td>
+                <td>ContactPage, LocalBusiness, BreadcrumbList</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>11.3 Open Graph / Twitter Card</h3>
+        <ul class="check-list">
+          <li class="check-yes"><code class="code-inline">og:title</code>, <code class="code-inline">og:description</code>, <code class="code-inline">og:image</code> (1200x630), <code class="code-inline">og:type</code> (website/article/product)</li>
+          <li class="check-yes"><code class="code-inline">twitter:card</code> = summary_large_image</li>
+          <li class="check-yes">Images OG générées dynamiquement via <code class="code-inline">@vercel/og</code> (template par type de page) ou uploadées manuellement dans Sanity</li>
+        </ul>
+
+        <h3>11.4 Performance SEO</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Core Web Vitals verts → impact direct ranking</li>
+          <li class="check-bullet">Indexation : <code class="code-inline">noindex</code> sur pages thank-you, admin, search, 404</li>
+          <li class="check-bullet">Canonical auto sur chaque page (next-seo)</li>
+          <li class="check-bullet">Hreflang prêt (architecture) — pas actif en v1</li>
+          <li class="check-bullet">Search Console : soumission sitemap, surveillance erreurs crawl, Core Web Vitals</li>
+        </ul>
+      </section>
+
+      <!-- 12. ACCESSIBILITÉ -->
+      <section id="s12" aria-labelledby="s12-title">
+        <h2 id="s12-title" data-num="12">ACCESSIBILITÉ (RGAA / WCAG 2.1 AA)</h2>
+
+        <ul class="check-list">
+          <li class="check-yes">Contrastes : tous les textes AA (4.5:1), larges AAA (7:1) — l'or réservé aux éléments graphiques</li>
+          <li class="check-yes">Focus visible : outline 2px or, offset 2px sur tous les éléments interactifs</li>
+          <li class="check-yes">Navigation clavier complète : tab order logique, pièges à focus (modales, drawer), skip link</li>
+          <li class="check-yes">ARIA : landmarks (<code class="code-inline">main</code>, <code class="code-inline">nav</code>, <code class="code-inline">aside</code>, <code class="code-inline">footer</code>), labels formulaires, <code class="code-inline">aria-hidden</code> sur icônes décoratives</li>
+          <li class="check-yes">Images : <code class="code-inline">alt</code> pertinents, images décoratives <code class="code-inline">alt=""</code> + <code class="code-inline">aria-hidden</code></li>
+          <li class="check-yes">Vidéos : sous-titres FR (VTT), transcription textuelle, pause auto hors viewport, pas de lecture auto son</li>
+          <li class="check-yes">Formulaires : labels visibles, messages d'erreur liés (<code class="code-inline">aria-describedby</code>), validation accessible</li>
+          <li class="check-yes">Responsive : zoom 200% sans perte de contenu, reflow vertical uniquement</li>
+          <li class="check-yes">Langue : <code class="code-inline">lang="fr"</code> sur <code class="code-inline">html</code>, changements de langue signalés (<code class="code-inline">lang="en"</code> sur termes techniques)</li>
+          <li class="check-yes">Mouvement : respect <code class="code-inline">prefers-reduced-motion</code>, pas de clignotement > 3Hz</li>
+        </ul>
+
+        <h3>Recette accessibilité</h3>
+        <ol>
+          <li>Audit automatisé : axe-core (CI) + Lighthouse Accessibility &ge; 95</li>
+          <li>Test manuel clavier : parcours complet (tab, shift+tab, enter, espace, échap)</li>
+          <li>Test lecteur d'écran : NVDA (Windows) + VoiceOver (macOS/iOS) — 5 scénarios critiques</li>
+          <li>Test zoom 200% + 400% : vérification reflow, pas de troncature</li>
+          <li>Contrastes : vérification outils (Colour Contrast Analyser) sur tous les états</li>
+          <li>Rapport RGAA 4.1.2 : grille de 106 critères, niveau AA visé, documentation écarts éventuels</li>
+        </ol>
+      </section>
+
+      <!-- 13. PERFORMANCE -->
+      <section id="s13" aria-labelledby="s13-title">
+        <h2 id="s13-title" data-num="13">PERFORMANCE</h2>
+
+        <h3>Core Web Vitals — Cibles</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Métrique</th>
+                <th scope="col">Cible (vert)</th>
+                <th scope="col">Outil mesure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>LCP (Largest Contentful Paint)</td>
+                <td>< 2.5 s</td>
+                <td>PageSpeed Insights, CrUX, Vercel Analytics</td>
+              </tr>
+              <tr>
+                <td>INP (Interaction to Next Paint)</td>
+                <td>< 200 ms</td>
+                <td>PageSpeed Insights, CrUX</td>
+              </tr>
+              <tr>
+                <td>CLS (Cumulative Layout Shift)</td>
+                <td>< 0.1</td>
+                <td>PageSpeed Insights, CrUX</td>
+              </tr>
+              <tr>
+                <td>TTFB (Time to First Byte)</td>
+                <td>< 600 ms (p95)</td>
+                <td>Vercel Analytics, WebPageTest</td>
+              </tr>
+              <tr>
+                <td>Lighthouse Performance</td>
+                <td>&ge; 95</td>
+                <td>Lighthouse CI (PR), PageSpeed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Stratégies</h3>
+        <ul class="check-list">
+          <li class="check-bullet">RSC par défaut — zéro JS composants statiques (hero, sections, cartes, footer)</li>
+          <li class="check-bullet">Client components uniquement : Navigation (hamburger), Formulaires, Calendly embed, Video player, Filtres collection</li>
+          <li class="check-bullet">Framer Motion : <code class="code-inline">layout</code> animations seulement, pas de <code class="code-inline">animate</code> sur mount pour contenu above-fold</li>
+          <li class="check-bullet">Fonts : <code class="code-inline">next/font</code> (Fraunces + Inter), preload, <code class="code-inline">display: swap</code>, subset latin-ext</li>
+          <li class="check-bullet">Images : Sanity CDN + <code class="code-inline">next/image</code>, tailles responsives, AVIF/WebP, LQIP hero</li>
+          <li class="check-bullet">CSS : Tailwind JIT, purge automatique, pas de CSS-in-JS runtime</li>
+          <li class="check-bullet">Third-party : Calendly (facultatif, lazy-load après interaction), Plausible (< 1ko), pas de Google Fonts runtime (self-hosted via next/font)</li>
+        </ul>
+
+        <h3>Budget ressources (mobile 3G simulé)</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Ressource</th>
+                <th scope="col">Budget</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HTML initial (gzippé)</td>
+                <td>< 30 ko</td>
+              </tr>
+              <tr>
+                <td>CSS total (gzippé)</td>
+                <td>< 15 ko</td>
+              </tr>
+              <tr>
+                <td>JS total (gzippé, hors vendor)</td>
+                <td>< 50 ko</td>
+              </tr>
+              <tr>
+                <td>Vendor JS (React, Framer Motion, etc.)</td>
+                <td>< 120 ko</td>
+              </tr>
+              <tr>
+                <td>Fonts (woff2, subset)</td>
+                <td>< 80 ko (2 polices × 2 poids)</td>
+              </tr>
+              <tr>
+                <td>Images above-fold (hero)</td>
+                <td>< 100 ko (LQIP + WebP)</td>
+              </tr>
+              <tr>
+                <td>Total transfert initial</td>
+                <td>< 400 ko</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 14. SÉCURITÉ & RGPD -->
+      <section id="s14" aria-labelledby="s14-title">
+        <h2 id="s14-title" data-num="14">SÉCURITÉ & RGPD</h2>
+
+        <h3>Sécurité</h3>
+        <ul class="check-list">
+          <li class="check-yes">CSP strict via <code class="code-inline">next.config.js</code> : <code class="code-inline">script-src 'self' 'nonce-...' https://cdn.calendly.com https://plausible.io</code>, <code class="code-inline">style-src 'self' 'unsafe-inline'</code> (Tailwind), <code class="code-inline">img-src 'self' data: https://cdn.sanity.io</code>, <code class="code-inline">font-src 'self' data:</code>, <code class="code-inline">connect-src 'self' https://api.resend.com https://plausible.io</code></li>
+          <li class="check-yes">Headers : <code class="code-inline">X-Frame-Options: DENY</code>, <code class="code-inline">X-Content-Type-Options: nosniff</code>, <code class="code-inline">Referrer-Policy: strict-origin-when-cross-origin</code>, <code class="code-inline">Permissions-Policy: camera=(), microphone=(), geolocation=()</code></li>
+          <li class="check-yes">HSTS : <code class="code-inline">Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</code> (Vercel géré)</li>
+          <li class="check-yes">Rate limiting API routes : 10 req/min/IP (contact), 5 req/min/IP (newsletter) — Upstash Redis ou Vercel Edge Config</li>
+          <li class="check-yes">Honeypot + timestamp sur formulaires (anti-bot sans CAPTCHA)</li>
+          <li class="check-yes">Validation Zod côté serveur sur toutes les API routes (jamais faire confiance au client)</li>
+          <li class="check-yes">Sanity : tokens lecture seule (CDN) pour frontend, tokens écriture (webhook) scope minimal, rotation trimestrielle</li>
+        </ul>
+
+        <h3>RGPD</h3>
+        <ul class="check-list">
+          <li class="check-yes">Aucun cookie non essentiel — Plausible sans cookies, pas de GA, pas de Meta Pixel, pas de tracking tiers</li>
+          <li class="check-yes">Formulaires : consentement explicite case à cocher (RGPD + newsletter séparées), double opt-in email</li>
+          <li class="check-yes">Données stockées : Sanity (leads, RDV) — chiffrement au repos, accès restreint équipe projet</li>
+          <li class="check-yes">Resend : emails transactionnels uniquement, pas de marketing sans consentement, suppression logs 30 jours</li>
+          <li class="check-yes">Droit d'accès / rectification / suppression : page dédiée /donnees-personnelles + formulaire → suppression Sanity + logs sous 30 jours</li>
+          <li class="check-yes">Registre des traitements tenu à jour (responsable : client, sous-traitant : agence)</li>
+          <li class="check-yes">Mentions légales / Politique confidentialité / CGV : pages dédiées, liens footer, versionnées</li>
+        </ul>
+      </section>
+
+      <!-- 15. COMPATIBILITÉ & RESPONSIVE -->
+      <section id="s15" aria-labelledby="s15-title">
+        <h2 id="s15-title" data-num="15">COMPATIBILITÉ & RESPONSIVE</h2>
+
+        <h3>Navigateurs supportés</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Navigateur</th>
+                <th scope="col">Version min</th>
+                <th scope="col">Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Chrome</td>
+                <td>120+</td>
+                <td>Complet</td>
+              </tr>
+              <tr>
+                <td>Firefox</td>
+                <td>121+</td>
+                <td>Complet</td>
+              </tr>
+              <tr>
+                <td>Safari</td>
+                <td>17+ (macOS) / 17+ (iOS)</td>
+                <td>Complet</td>
+              </tr>
+              <tr>
+                <td>Edge</td>
+                <td>120+</td>
+                <td>Complet</td>
+              </tr>
+              <tr>
+                <td>Samsung Internet</td>
+                <td>21+</td>
+                <td>Complet</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="label">Pas de support IE11, pas de polyfills legacy. <code class="code-inline">browserslist</code> : <code class="code-inline">last 2 versions, not dead, not ie 11</code>.</p>
+
+        <h3>Breakpoints Tailwind</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Largeur</th>
+                <th scope="col">Usage principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sm</td>
+                <td>640px</td>
+                <td>Tablettes portrait, grands mobiles — grille 2 colonnes, navigation drawer</td>
+              </tr>
+              <tr>
+                <td>md</td>
+                <td>768px</td>
+                <td>Tablettes landscape — ajustements typo, padding</td>
+              </tr>
+              <tr>
+                <td>lg</td>
+                <td>1024px</td>
+                <td>Desktop — sidebar TOC, grille 3-4 colonnes, navigation horizontale</td>
+              </tr>
+              <tr>
+                <td>xl</td>
+                <td>1280px</td>
+                <td>Grand desktop — conteneur max 1200px, espaces latéraux 6vw</td>
+              </tr>
+              <tr>
+                <td>2xl</td>
+                <td>1536px</td>
+                <td>Ultra-wide — conteneur max 1440px, hero full-bleed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Tests</h3>
+        <ul class="check-list">
+          <li class="check-bullet">BrowserStack : Chrome/Firefox/Safari/Edge (desktop + mobile) — 5 devices physiques min</li>
+          <li class="check-bullet">Lighthouse CI sur chaque PR (performance, accessibilité, best practices, SEO)</li>
+          <li class="check-bullet">Tests visuels : Chromatic (Storybook) ou Percy — composants UI + pages clés</li>
+          <li class="check-bullet">Accessibilité : axe-core (CI) + test manuel NVDA/VoiceOver</li>
+          <li class="check-bullet">Performance réelle : WebPageTest (3G, 4G, cable) + Vercel Analytics (RUM) post-lancement</li>
+        </ul>
+      </section>
+
+      <!-- 16. LIVRABLES -->
+      <section id="s16" aria-labelledby="s16-title">
+        <h2 id="s16-title" data-num="16">LIVRABLES</h2>
+
+        <h3>Livrables de conception</h3>
+        <ul class="check-list">
+          <li class="check-yes">Wireframes low-fi (mobile/desktop) — Figma, 12 écrans clés</li>
+          <li class="check-yes">Maquettes high-fi (système de design complet) — Figma, composants, états, responsive</li>
+          <li class="check-yes">Prototype interactif (parcours utilisateur complet) — Figma</li>
+          <li class="check-yes">Design system documenté (couleurs, typo, espacements, composants, tokens) — Figma + Storybook</li>
+          <li class="check-yes">Spécifications motion (durées, easings, triggers) — Figma + doc markdown</li>
+        </ul>
+
+        <h3>Livrables de développement</h3>
+        <ul class="check-list">
+          <li class="check-yes">Repository GitHub (privé) — Next.js 15, TypeScript strict, ESLint, Prettier, Husky</li>
+          <li class="check-yes">Projet Sanity Studio configuré (schémas, desk structure, previews, webhooks)</li>
+          <li class="check-yes">Code source complet (components, app, lib, types, styles) — coverage tests &ge; 80% (unit + integration)</li>
+          <li class="check-yes">Storybook déployé (Chromatic) — tous composants UI documentés, états, a11y</li>
+          <li class="check-yes">Documentation technique (README, architecture, déploiement, CMS guide, troubleshooting) — markdown dans repo</li>
+          <li class="check-yes">Configuration Vercel (projet, domains, env vars, preview, cron, analytics)</li>
+          <li class="check-yes">Scripts utilitaires (seed Sanity, revalidation manuelle, export contenu)</li>
+        </ul>
+
+        <h3>Livrables de recette</h3>
+        <ul class="check-list">
+          <li class="check-yes">Grille de recette fonctionnelle (critères §19) — Google Sheets partagé</li>
+          <li class="check-yes">Rapport d'audit performance (Lighthouse, WebPageTest, Core Web Vitals)</li>
+          <li class="check-yes">Rapport d'audit accessibilité (axe, RGAA, lecteurs d'écran)</li>
+          <li class="check-yes">Guide administrateur Sanity (création/modération contenu, images, SEO, webhooks) — PDF + Loom</li>
+        </ul>
+      </section>
+
+      <!-- 17. PLANNING PRÉVISIONNEL -->
+      <section id="s17" aria-labelledby="s17-title">
+        <h2 id="s17-title" data-num="17">PLANNING PRÉVISIONNEL</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Phase</th>
+                <th scope="col">Durée</th>
+                <th scope="col">Jalon / Livrable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. Découverte & Cadrage</td>
+                <td>1 semaine</td>
+                <td>Kick-off, atelier besoins, audit existant, planning détaillé validé</td>
+              </tr>
+              <tr>
+                <td>2. Conception UX/UI</td>
+                <td>2 semaines</td>
+                <td>Wireframes → Maquettes → Prototype → Design System validés client</td>
+              </tr>
+              <tr>
+                <td>3. Setup technique & CMS</td>
+                <td>1 semaine</td>
+                <td>Repo, Next.js, Sanity schemas, CI/CD, Storybook, environnements</td>
+              </tr>
+              <tr>
+                <td>4. Développement Front (itératif)</td>
+                <td>3 semaines</td>
+                <td>Sprint 1 : Layout, Navigation, Accueil, Maison<br>Sprint 2 : Collection, Fiche, Sur-mesure<br>Sprint 3 : Journal, Contact, Formulaires, SEO, Performance</td>
+              </tr>
+              <tr>
+                <td>5. Intégration contenus & Recette interne</td>
+                <td>1 semaine</td>
+                <td>Contenus client injectés, recette QA complète, corrections</td>
+              </tr>
+              <tr>
+                <td>6. Recette client & Mise en production</td>
+                <td>1 semaine</td>
+                <td>Recette client (grille §19), corrections, formation admin, DNS, Go-live</td>
+              </tr>
+              <tr>
+                <td><strong>TOTAL</strong></td>
+                <td><strong>9 semaines</strong></td>
+                <td><strong>Lancement cible : S+9</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="label">Hors délais de fourniture contenus client (voir §10.2). Tout retard contenu décale le planning proportionnellement. Buffer 1 semaine inclus en phase 5.</p>
+      </section>
+
+      <!-- 18. BUDGET ESTIMATIF -->
+      <section id="s18" aria-labelledby="s18-title">
+        <h2 id="s18-title" data-num="18">BUDGET ESTIMATIF</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Poste</th>
+                <th scope="col">Fourchette (€ HT)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cadrage, UX/UI, Design System, Prototypage</td>
+                <td>3 500 – 5 000</td>
+              </tr>
+              <tr>
+                <td>Setup technique, CI/CD, Sanity, Storybook</td>
+                <td>1 800 – 2 500</td>
+              </tr>
+              <tr>
+                <td>Développement Front (Accueil, Maison, Navigation)</td>
+                <td>3 200 – 4 500</td>
+              </tr>
+              <tr>
+                <td>Développement Collection + Fiches + Sur-mesure</td>
+                <td>3 500 – 5 000</td>
+              </tr>
+              <tr>
+                <td>Développement Journal + Contact + Formulaires</td>
+                <td>2 000 – 3 000</td>
+              </tr>
+              <tr>
+                <td>SEO technique, JSON-LD, Performance, Accessibilité</td>
+                <td>1 500 – 2 200</td>
+              </tr>
+              <tr>
+                <td>Intégration contenus, Recette, Formation, Déploiement</td>
+                <td>1 800 – 2 500</td>
+              </tr>
+              <tr>
+                <td>Gestion de projet, Coordination, Réunions (9 sem)</td>
+                <td>1 400 – 2 200</td>
+              </tr>
+              <tr>
+                <td><strong>TOTAL</strong></td>
+                <td><strong>18 700 – 28 400</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="label">Hébergement & services tiers (annuels, à la charge du client) : Vercel Pro ~240€/an, Sanity Growth ~1 200€/an, Resend ~240€/an, Plausible ~60€/an (self-hosté) ou 9€/mois (cloud), Domaine ~15€/an. <strong>Maintenance préventive recommandée : 10–15% du budget dev / an</strong> (mises à jour dépendances, correctifs sécurité, monitoring, évolutions mineures).</p>
+      </section>
+
+      <!-- 19. CRITÈRES DE RECETTE -->
+      <section id="s19" aria-labelledby="s19-title">
+        <h2 id="s19-title" data-num="19">CRITÈRES DE RECETTE</h2>
+
+        <ul class="check-list">
+          <li class="check-yes">Toutes les pages s'affichent sans erreur console (JS, réseau, CSP)</li>
+          <li class="check-yes">Navigation fluide : header sticky, drawer mobile, ancres sommaire, fil d'Ariane</li>
+          <li class="check-yes">Hero : vidéo lit auto muette, pause hors viewport, fallback image si échec</li>
+          <li class="check-yes">Collection : filtres famille + tri fonctionnels, URLs mises à jour (pushState), SSR/ISR OK</li>
+          <li class="check-yes">Fiche parfum : galerie, pyramide interactive, formats, boutons externes, produits suggérés</li>
+          <li class="check-yes">Sur-mesure : diagnostic (12 questions) → profils → Calendly embed → confirmation email</li>
+          <li class="check-yes">Formulaire contact / RDV : validation Zod, honeypot, Resend email équipe + lead Sanity, toast feedback</li>
+          <li class="check-yes">Newsletter : double opt-in, confirmation email, stockage Sanity (consentement tracé)</li>
+          <li class="check-yes">Performance : Lighthouse &ge; 95 (tous piliers), Core Web Vitals verts (mobile & desktop)</li>
+          <li class="check-yes">Accessibilité : axe 0 violations critiques/majeures, RGAA AA validé, NVDA/VoiceOver OK</li>
+          <li class="check-yes">SEO : sitemap.xml valide, robots.txt, JSON-LD valides (Schema.org validator), OG/Twitter cards</li>
+        </ul>
+      </section>
+
+      <!-- 20. MAINTENANCE & ÉVOLUTIONS (V2) -->
+      <section id="s20" aria-labelledby="s20-title">
+        <h2 id="s20-title" data-num="20">MAINTENANCE & ÉVOLUTIONS (V2)</h2>
+
+        <h3>V2 — 6 à 12 mois</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Configurateur sur-mesure interactif (étape 1 digitalisée : questionnaire dynamique + recommandation matières temps réel)</li>
+          <li class="check-bullet">Espace client (historique commandes, formules archivées, réassort, certificats)</li>
+          <li class="check-bullet">Multilingue actif (EN, ES) — routage <code class="code-inline">/[locale]/</code>, traduction Sanity (document-level)</li>
+          <li class="check-bullet">Programme fidélité (points atelier, parrainage, accès avant-première)</li>
+          <li class="check-bullet">Ateliers en ligne : calendrier, inscription, paiement (Stripe), visio intégrée</li>
+        </ul>
+
+        <h3>V3 — 12 à 24 mois</h3>
+        <ul class="check-list">
+          <li class="check-bullet">E-commerce headless complet (panier, paiement, comptes, expédition) — migration Shopify → Medusa/Commercetools</li>
+          <li class="check-bullet">Application mobile (React Native / Expo) — synchronisation compte, notifications push, mode hors-ligne carnets</li>
+          <li class="check-bullet">IA générative : assistant olfactif conversationnel (diagnostic guidé, éducation matières)</li>
+        </ul>
+
+        <h3>Contrat de maintenance (recommandé)</h3>
+        <ul class="check-list">
+          <li class="check-bullet">Surveillance uptime (Vercel + Better Uptime) — alerte < 5 min</li>
+          <li class="check-bullet">Mises à jour dépendances mensuelles (Renovate bot + revue manuelle)</li>
+          <li class="check-bullet">Correctifs sécurité sous 48h (CVE critiques)</li>
+          <li class="check-bullet">Monitoring Core Web Vitals hebdo (Vercel Analytics + CrUX)</li>
+          <li class="check-bullet">Bank d'heures évolutions mineures (5h/mois reportable, max 20h) — tickets priorisés client</li>
+        </ul>
+      </section>
+
+      <!-- VALIDATION -->
+      <section id="validation" aria-labelledby="validation-title">
+        <h2 id="validation-title" data-num="">VALIDATION</h2>
+
+        <p>Le présent cahier des charges fait foi entre les parties. Toute modification ultérieure fera l'objet d'un avenant signé, précisant l'impact sur le planning et le budget.</p>
+
+        <table class="sig-table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 25%;">Rôle</th>
+              <th scope="col" style="width: 25%;">Nom</th>
+              <th scope="col" style="width: 25%;">Date</th>
+              <th scope="col" style="width: 25%;">Signature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Client — MAISON SILLAGE</td>
+              <td></td>
+              <td></td>
+              <td><span class="sig-line"></span></td>
+            </tr>
+            <tr>
+              <td>Chef de projet</td>
+              <td></td>
+              <td></td>
+              <td><span class="sig-line"></span></td>
+            </tr>
+            <tr>
+              <td>Directeur Artistique</td>
+              <td></td>
+              <td></td>
+              <td><span class="sig-line"></span></td>
+            </tr>
+            <tr>
+              <td>Développement — Lead Tech</td>
+              <td></td>
+              <td></td>
+              <td><span class="sig-line"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-text">Document versionné — toute modification fera l'objet d'un avenant signé</p>
+      <time class="footer-date" datetime="2025-01-15">Janvier 2025 — Version 1.0</time>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // Scroll Spy for TOC
+      var sections = document.querySelectorAll('main section[id^="s"]');
+      var tocLinks = document.querySelectorAll('.toc-list a[data-section]');
+      var validationLink = document.querySelector('.toc-list a[data-section="val"]');
+      var validationSection = document.getElementById('validation');
+
+      function getActiveSection() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var headerHeight = document.querySelector('.site-header')?.offsetHeight || 80;
+        var offset = headerHeight + 20;
+
+        // Check validation section first (last)
+        if (validationSection) {
+          var valTop = validationSection.offsetTop - offset;
+          var valBottom = valTop + validationSection.offsetHeight;
+          if (scrollY >= valTop && scrollY < valBottom) {
+            return 'val';
+          }
+        }
+
+        // Check regular sections
+        for (var i = sections.length - 1; i >= 0; i--) {
+          var section = sections[i];
+          var top = section.offsetTop - offset;
+          var bottom = top + section.offsetHeight;
+          if (scrollY >= top && scrollY < bottom) {
+            return section.id.replace('s', '');
+          }
+        }
+        return null;
+      }
+
+      function updateToc() {
+        var activeNum = getActiveSection();
+        tocLinks.forEach(function(link) {
+          var sectionNum = link.getAttribute('data-section');
+          if (sectionNum === activeNum) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        if (validationLink) {
+          if (activeNum === 'val') {
+            validationLink.classList.add('active');
+          } else {
+            validationLink.classList.remove('active');
+          }
+        }
+      }
+
+      // Throttled scroll handler
+      var ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateToc();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      // Initial
+      updateToc();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Smooth scroll for TOC links (progressive enhancement)
+      tocLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          var href = this.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            var target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              var headerHeight = document.querySelector('.site-header')?.offsetHeight || 80;
+              var targetTop = target.offsetTop - headerHeight - 16;
+              window.scrollTo({ top: targetTop, behavior: 'smooth' });
+              // Update URL without jump
+              history.pushState(null, '', href);
+            }
+          }
+        });
+      });
+
+      if (validationLink) {
+        validationLink.addEventListener('click', function(e) {
+          var href = this.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            var target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              var headerHeight = document.querySelector('.site-header')?.offsetHeight || 80;
+              var targetTop = target.offsetTop - headerHeight - 16;
+              window.scrollTo({ top: targetTop, behavior: 'smooth' });
+              history.pushState(null, '', href);
+            }
+          }
+        });
+      }
+
+      // Print button already handled by onclick="window.print()"
+    })();
+  </script>
+</body>
+</html>
